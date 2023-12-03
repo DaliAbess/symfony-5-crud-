@@ -79,12 +79,33 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#"></a>
                     </li>
+                     {% if is_granted('ROLE_OWNER') %}
                     <li class="nav-item">
+                        <a class="nav-link login-btn" href="{{ path('app_dashboard') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link signup-btn" href="{{ path('app_logout') }}">Log Out</a>
+                    </li>
+                      
+                    {% elseif is_granted('ROLE_USER') %}
+                         <li class="nav-item">
+                        <a class="nav-link login-btn" href="{{ path('restau_search') }}"> Reservation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link signup-btn" href="{{ path('app_logout') }}">Log Out</a>
+                    </li>
+                    {% else %}
+                                        <li class="nav-item">
                         <a class="nav-link login-btn" href="{{ path('app_login') }}">Log In</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link signup-btn" href="{{ path('app_register') }}">Sign Up</a>
                     </li>
+                    {% endif %}
+                                    
+                       
+
+                    
                 </ul>
             </div>
         </div>
